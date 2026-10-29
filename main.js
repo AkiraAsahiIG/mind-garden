@@ -5,6 +5,11 @@
 ========================================= */
 (function () {
   'use strict';
+   
+  // Background music
+  const bgMusic = new Audio("audio/rainy.mp3");
+  bgMusic.loop = true;
+  bgMusic.volume = 0.25;
 
   const STORAGE_KEY = 'mindGardenState_v1';
   const DEFAULT_STATE = {
