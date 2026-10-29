@@ -5,9 +5,7 @@
 ========================================= */
 (function () {
   'use strict';
-(function () {
-  'use strict';
-
+   
   // Background music
   const bgMusic = new Audio("./Audio/rainy.mp3");
   bgMusic.loop = true;
