@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#100e22">
+  <meta name="description" content="Mind Garden — a peaceful little world for relaxing, reflecting, and making space for what matters.">
+  <title>Mind Garden — Your Little Escape</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <button class="brand" id="brandHome" aria-label="Go to garden"><span>✿</span> MIND GARDEN</button>
+    <div class="top-actions">
+      <button class="icon-btn" id="soundBtn" aria-label="Toggle sound" title="Sound">♪</button>
+      <button class="icon-btn" id="settingsBtn" aria-label="Settings" title="Settings">⚙</button>
+    </div>
+  </header>
+
+  <main id="app">
+    <!-- PAGE 1: WELCOME -->
+    <section class="page active" id="welcomePage">
+      <div class="welcome-scene">
+        <div class="moon">☾</div><div class="firefly f1">✦</div><div class="firefly f2">·</div><div class="firefly f3">✧</div>
+        <div class="scene-art" aria-hidden="true">
+          <span class="cloud cloud-one">☁</span><span class="cloud cloud-two">☁</span><span class="scene-star s1">✦</span><span class="scene-star s2">✧</span>
+          <span class="scene-hill hill-back"></span><span class="scene-hill hill-front"></span><span class="scene-tree tree-one">🌳</span><span class="scene-tree tree-two">🌲</span><span class="scene-flower">🌷</span><span class="scene-flower flower-two">🌼</span>
+        </div>
+      </div>
+      <div class="welcome-copy">
+        <p class="eyebrow">A LITTLE WORLD OF YOUR OWN</p>
+        <h1 id="welcomeTitle">Hello, Mawo<span class="period">.</span></h1>
+        <div class="intro-lines" id="introLines"><p>Maybe your mind has been busy today.</p><p>Work, plans, endless thoughts…</p><p class="accent-copy">Here, you can slow down for a little while.</p></div>
+        <h2>Ready for the game?</h2><p class="muted">A little peace. A little play. No pressure.</p>
+        <button class="primary-btn wide" id="enterBtn" data-go="gardenPage">Let's enter my world <span>↗</span></button>
+        <button class="text-btn" id="skipIntroBtn" data-go="gardenPage">Skip intro</button>
+      </div>
+      <p class="page-note">MADE FOR YOUR MOMENTS OF PEACE ✦</p>
+    </section>
+
+    <!-- PAGE 2: GARDEN HUB -->
+    <section class="page" id="gardenPage">
+      <div class="page-heading"><p class="eyebrow">YOUR LITTLE ESCAPE</p><h1>Welcome to the Garden <span>🌿</span></h1><p class="muted">What would feel good right now?</p></div>
+      <div class="garden-banner">
+        <div class="banner-copy"><span class="tiny-label">YOUR WORLD</span><h2 id="gardenGreeting">A peaceful place, just for you.</h2><p><span id="flowerCount">0</span> little blooms · <span id="decorCount">0</span> discoveries</p></div>
+        <div class="garden-illustration" aria-hidden="true"><span>🌙</span><span>🏡</span><span>🦋</span><span>🌷</span></div>
+      </div>
+      <div class="section-row"><h2>Choose your moment</h2><span class="soft-pill">9 activities</span></div>
+      <div class="activity-grid">
+        <button class="activity-card breathe-card" data-go="breathePage"><span class="activity-art">✨</span><span class="activity-title">Glow &amp; Breathe</span><span class="activity-desc">Find a gentle rhythm.</span><span class="activity-arrow">Explore ↗</span></button>
+        <button class="activity-card cloud-card" data-go="cloudPage"><span class="activity-art">☁️</span><span class="activity-title">Cloud Thoughts</span><span class="activity-desc">Give your thoughts space.</span><span class="activity-arrow">Explore ↗</span></button>
+        <button class="activity-card plan-card" data-go="stepsPage"><span class="activity-art">📖</span><span class="activity-title">Little Steps</span><span class="activity-desc">One thing at a time.</span><span class="activity-arrow">Explore ↗</span></button>
+        <button class="activity-card goodbye-card" data-go="goodbyePage"><span class="activity-art">🌷</span><span class="activity-title">Mood Tracker</span><span class="activity-desc">Check in and notice your patterns.</span><span class="activity-arrow">Check in ↗</span></button>
+        <button class="activity-card blessings-card" data-go="blessingsPage"><span class="activity-art">🤍</span><span class="activity-title">Little Blessings</span><span class="activity-desc">Keep the small good things.</span><span class="activity-arrow">Write a little ↗</span></button>
+        <button class="activity-card quran-card" data-go="quranPage"><span class="activity-art">📖</span><span class="activity-title">Quran Corner</span><span class="activity-desc">Listen, read, and take a pause.</span><span class="activity-arrow">Enter ↗</span></button>
+        <button class="activity-card dhikr-card" data-go="dhikrPage"><span class="activity-art">📿</span><span class="activity-title">Dhikr Corner</span><span class="activity-desc">Remember Allah at your pace.</span><span class="activity-arrow">Begin ↗</span></button>
+        <button class="activity-card dua-card" data-go="duaPage"><span class="activity-art">🕊️</span><span class="activity-title">Dua &amp; Reflection</span><span class="activity-desc">Read a dua and reflect gently.</span><span class="activity-arrow">Explore ↗</span></button>
+        <button class="activity-card time-card" data-go="timeAyahPage"><span class="activity-art">🕰️</span><span class="activity-title">Time to Ayah</span><span class="activity-desc">Choose a time to discover an ayah.</span><span class="activity-arrow">Find an ayah ↗</span></button>
+      </div>
+      <div class="quote-card"><span>✧</span><p>You don't have to do everything today.</p><small>Small moments count, too.</small></div>
+    </section>
+
+    <!-- GLOW & BREATHE — preserved -->
+    <section class="page" id="breathePage">
+      <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">TAKE A SOFT PAUSE</p><h1>Glow &amp; Breathe <span>✨</span></h1><p class="muted">Follow the light only if it feels comfortable.</p></div>
+      <div class="breath-scene"><div class="breath-orb" id="breathOrb"><span id="breathWord">Ready?</span></div><p class="breath-instruction" id="breathInstruction">You can breathe naturally, too.</p><p class="breath-counter" id="breathCounter">A quiet moment, just for you.</p></div>
+      <div class="button-stack"><button class="primary-btn wide" id="breathStartBtn">Begin gently</button><button class="secondary-btn wide" id="breathStopBtn" disabled>Pause</button></div>
+      <p class="gentle-tip">Keep breathing naturally if following a rhythm feels uncomfortable. You can stop whenever you like.</p>
+    </section>
+
+    <!-- CLOUD THOUGHTS -->
+    <section class="page" id="cloudPage">
+      <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">MAKE A LITTLE SPACE</p><h1>Cloud Thoughts <span>☁️</span></h1><p class="muted">You don't have to figure everything out right now.</p></div>
+      <div class="cloud-sky" id="cloudSky"><span class="floating-cloud c1">☁</span><span class="floating-cloud c2">☁</span><span class="sky-message" id="skyMessage">Your thoughts are welcome here.</span></div>
+      <form id="thoughtForm" class="input-card"><label for="thoughtInput">What's on your mind?</label><textarea id="thoughtInput" maxlength="500" rows="4" placeholder="Write a thought, a worry, or anything you want to put into words…"></textarea><div class="form-meta"><span id="thoughtChars">0 / 500</span><span>Only save what you want to keep.</span></div><label class="check-row"><input id="saveReleasedThought" type="checkbox"> <span>Keep a copy in my saved thoughts</span></label><button class="primary-btn wide" type="submit">Release This Thought ☁️</button></form>
+      <div class="section-row"><h2>Your saved thoughts</h2><button class="text-btn" id="clearThoughtsBtn">Clear all</button></div><div id="thoughtList" class="thought-list"></div>
+      <p class="gentle-tip">Thoughts are saved only in this browser if you choose to keep them. Local browser storage is not encrypted.</p>
+    </section>
+
+    <!-- LITTLE STEPS -->
+    <section class="page" id="stepsPage">
+      <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">ONE THING AT A TIME</p><h1>Little Steps <span>📖</span></h1><p class="muted">You don't need to plan your whole life today.</p></div>
+      <div class="plan-banner"><span>🌷</span><div><strong>What matters next?</strong><p>Choose one small, manageable step.</p></div></div>
+      <form id="taskForm" class="task-form"><label for="taskInput">Add a little step</label><div class="task-input-row"><input id="taskInput" type="text" maxlength="120" placeholder="e.g. Read two pages…" required><button class="primary-btn" type="submit" aria-label="Add task">＋</button></div><label for="taskPriority">How important is it?</label><select id="taskPriority"><option value="gentle">Whenever I can 🌱</option><option value="soon">I'd like to do it soon 🌷</option><option value="important">My next priority ✨</option></select></form>
+      <div class="section-row"><h2>Your little list</h2><span class="soft-pill" id="taskCount">0 tasks</span></div><div id="taskList" class="task-list"></div><button class="secondary-btn wide" id="clearCompletedBtn">Clear completed steps</button><p class="gentle-tip">Rest is allowed. An unfinished task is not a failure.</p>
+    </section>
+
+    <!-- MOOD TRACKER (upgraded existing Gentle Pause activity) -->
+    <section class="page" id="goodbyePage">
+      <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">NOTICE, DON'T JUDGE</p><h1>Mood Tracker <span>🌷</span></h1><p class="muted">Every feeling can have a place here. There is no “right” mood.</p></div>
+      <form id="moodForm" class="input-card"><label>How are you feeling right now?</label><div class="mood-options" id="moodChoices">
+        <button class="mood-btn" type="button" data-mood-choice="Calm" data-emoji="😌"><span>😌</span>Calm</button><button class="mood-btn" type="button" data-mood-choice="Grateful" data-emoji="🤍"><span>🤍</span>Grateful</button><button class="mood-btn" type="button" data-mood-choice="Hopeful" data-emoji="🌤️"><span>🌤️</span>Hopeful</button><button class="mood-btn" type="button" data-mood-choice="Joyful" data-emoji="😊"><span>😊</span>Joyful</button><button class="mood-btn" type="button" data-mood-choice="Tired" data-emoji="😴"><span>😴</span>Tired</button><button class="mood-btn" type="button" data-mood-choice="Worried" data-emoji="🌧️"><span>🌧️</span>Worried</button><button class="mood-btn" type="button" data-mood-choice="Overwhelmed" data-emoji="🌊"><span>🌊</span>Overwhelmed</button><button class="mood-btn" type="button" data-mood-choice="Sad" data-emoji="🌦️"><span>🌦️</span>Sad</button><button class="mood-btn" type="button" data-mood-choice="Unsure" data-emoji="🌫️"><span>🌫️</span>Unsure</button>
+      </div><label for="moodReflection">Anything you'd like to remember? (optional)</label><textarea id="moodReflection" rows="3" maxlength="350" placeholder="A small note about this moment…"></textarea><button class="primary-btn wide" type="submit" id="saveMoodBtn">Save this check-in 🌱</button></form>
+      <div class="mood-garden-card"><div class="section-row compact-row"><h2>Your little mood garden</h2><span id="moodBloomCount" class="soft-pill">0 blooms</span></div><p class="muted small-copy">Each check-in adds a little bloom, whatever the mood. You don't have to feel happy to grow.</p><div id="moodGarden" class="mood-garden" aria-live="polite">🌱</div></div>
+      <div class="section-row"><h2>This week</h2><span class="soft-pill" id="weekCheckCount">0 check-ins</span></div><div id="weekOverview" class="week-overview"></div>
+      <div class="section-row"><button class="icon-btn calendar-nav" id="prevMoodMonth" aria-label="Previous month">‹</button><h2 id="calendarMonth">Mood calendar</h2><button class="icon-btn calendar-nav" id="nextMoodMonth" aria-label="Next month">›</button></div><div class="calendar-card"><div class="calendar-grid weekday-row"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div><div id="moodCalendar" class="calendar-grid"></div><p class="calendar-legend">A day shows the last check-in saved for that date.</p></div>
+      <div class="section-row"><h2>Recent check-ins</h2></div><div id="moodHistory" class="mood-history"></div><p class="gentle-tip">Your mood history stays in this browser. It can help you notice patterns, but it isn't a diagnosis.</p>
+      <div class="closing-note"><span>✦</span><p>You don't have to fix everything to deserve a moment of peace.</p><small>Take the next step whenever you're ready.</small></div>
+    </section>
+
+    <!-- LITTLE BLESSINGS -->
+    <section class="page" id="blessingsPage">
+      <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">NOTICE THE LITTLE GOOD</p><h1>Little Blessings <span>🤍</span></h1><p class="muted">A quiet place to remember people, ordinary moments, and things you're grateful for.</p></div>
+      <form id="blessingForm" class="input-card"><label for="blessingInput">One little blessing from today</label><textarea id="blessingInput" maxlength="700" rows="4" placeholder="A kind message, family, a peaceful minute, something you learned…" required></textarea><button class="primary-btn wide" type="submit">Save this blessing ✨</button></form>
+      <div class="section-row"><h2>Your blessings</h2><span class="soft-pill" id="blessingCount">0 saved</span></div><div id="blessingList" class="blessing-list"></div><p class="gentle-tip">Gratitude doesn't mean pretending difficult things aren't difficult. Both can be true.</p>
+    </section>
+
+    <!-- QURAN CORNER -->
+    <section class="page" id="quranPage">
+      <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">LISTEN AT YOUR OWN PACE</p><h1>Quran Corner <span>📖</span></h1><p class="muted">Choose a recording and settle in for a little while.</p></div>
+      <div class="audio-list">
+        <article class="audio-card"><div class="audio-art">🌙</div><div class="audio-copy"><h2>Surah Al-Mulk</h2><p>Audio file: <code>Al-mulk.mp3</code></p><audio controls preload="none" aria-label="Play Surah Al-Mulk"><source src="Al-mulk.mp3" type="audio/mpeg">Your browser does not support audio.</audio><p class="audio-status" aria-live="polite"></p></div></article>
+        <article class="audio-card"><div class="audio-art">🕊️</div><div class="audio-copy"><h2>Ruqyah</h2><p>Audio file: <code>Ruqyah.mp3</code></p><audio controls preload="none" aria-label="Play Ruqyah"><source src="Ruqyah.mp3" type="audio/mpeg">Your browser does not support audio.</audio><p class="audio-status" aria-live="polite"></p></div></article>
+        <article class="audio-card"><div class="audio-art">🌧️</div><div class="audio-copy"><h2>Taha Rain</h2><p>Audio file: <code>Taha-Rain.mp3</code></p><audio controls preload="none" aria-label="Play Taha Rain"><source src="Taha-Rain.mp3" type="audio/mpeg">Your browser does not support audio.</audio><p class="audio-status" aria-live="polite"></p></div></article>
+      </div><p class="gentle-tip">Add the three MP3 files beside index.html in your GitHub repository, using the exact filenames shown above. The players will work once the files are there.</p>
+    </section>
+
+    <!-- DHIKR CORNER -->
+    <section class="page" id="dhikrPage">
+      <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">A MOMENT OF REMEMBRANCE</p><h1>Dhikr Corner <span>📿</span></h1><p class="muted">Count gently. There is no pressure to reach a target.</p></div>
+      <div class="input-card"><label for="dhikrSelect">Choose a dhikr</label><select id="dhikrSelect"><option value="subhan">SubhanAllah</option><option value="hamd">Alhamdulillah</option><option value="akbar">Allahu Akbar</option><option value="istighfar">Astaghfirullah</option><option value="hawqala">La hawla wa la quwwata illa billah</option></select><div id="dhikrArabic" class="arabic-text" lang="ar" dir="rtl">سُبْحَانَ اللَّهِ</div><h2 id="dhikrPhrase" class="dhikr-phrase">SubhanAllah</h2><p id="dhikrMeaning" class="muted center-text">Glory be to Allah.</p><div class="dhikr-count" id="dhikrCount" aria-live="polite">0</div><button class="primary-btn wide count-btn" id="dhikrTapBtn" type="button">Count dhikr · +1</button><button class="secondary-btn wide" id="dhikrResetBtn" type="button">Reset this counter</button><p class="tiny-note center-text">Counts are saved in this browser for each phrase.</p></div>
+    </section>
+
+    <!-- DUA & REFLECTION -->
+    <section class="page" id="duaPage">
+      <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">READ, PAUSE, REFLECT</p><h1>Dua &amp; Reflection <span>🕊️</span></h1><p class="muted">A few duas from the Qur’an, with references to read and verify.</p></div>
+      <div class="input-card"><label for="duaSelect">Choose a dua</label><select id="duaSelect"><option value="world">Good in this life and the next · Qur’an 2:201</option><option value="heart">A prayer for a steady heart · Qur’an 3:8</option><option value="parents">Mercy for parents · Qur’an 17:24</option><option value="ease">Asking for ease · Qur’an 20:25–28</option></select><article class="dua-card-body"><p class="tiny-label" id="duaReference">QUR’AN 2:201</p><div class="arabic-text dua-arabic" id="duaArabic" lang="ar" dir="rtl"></div><p class="transliteration" id="duaTransliteration"></p><p id="duaTranslation" class="dua-translation"></p><p id="duaSourceNote" class="tiny-note"></p></article><label for="duaReflection">My private reflection (optional)</label><textarea id="duaReflection" rows="3" maxlength="500" placeholder="What stands out to you? A hope, a question, a thought…"></textarea><button class="primary-btn wide" id="saveDuaReflectionBtn" type="button">Save reflection</button></div>
+      <div class="section-row"><h2>Saved reflections</h2><span id="duaReflectionCount" class="soft-pill">0 saved</span></div><div id="duaReflectionList" class="reflection-list"></div><p class="gentle-tip">Translations are interpretations of meaning. For worship, study, or a ruling, consult a trusted Qur’an translation or knowledgeable teacher.</p>
+    </section>
+
+    <!-- TIME TO AYAH -->
+    <section class="page" id="timeAyahPage">
+      <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">A VERSE TO READ AND REFLECT ON</p><h1>Time to Ayah <span>🕰️</span></h1><p class="muted">Enter any valid 24-hour time, like 10:04 or 21:46, then discover a real ayah.</p></div>
+      <form id="timeAyahForm" class="input-card"><label for="ayahTimeInput">Choose a time (HH:MM)</label><div class="time-input-row"><input id="ayahTimeInput" type="time" value="10:04" required><button class="primary-btn" type="submit">Find My Ayah ↗</button></div><p class="tiny-note">A consistent time-to-verse rule selects a valid ayah from the Qur’an. The time is a lookup key only; it is not a religious sign or claim of special meaning.</p></form>
+      <div id="ayahResult" class="ayah-result" aria-live="polite"><div class="empty-note">Your ayah will appear here. 🌙</div></div>
+      <p class="gentle-tip">Arabic text and Saheeh International English translation are requested from AlQuran Cloud. Your reflection prompt is separate from the Qur’anic text.</p>
+    </section>
+  </main>
+
+  <!-- SETTINGS PANEL -->
+    <div class="modal-backdrop" id="settingsModal" hidden><section class="settings-panel" role="dialog" aria-modal="true" aria-labelledby="settingsTitle"><div class="section-row"><h2 id="settingsTitle">Your space ⚙️</h2><button class="icon-btn" id="closeSettingsBtn" aria-label="Close settings">✕</button></div><p class="muted">Make your little world feel right for you.</p><label class="setting-row"><span>Sound effects</span><input id="soundToggle" type="checkbox"></label><label class="setting-row"><span>Reduced animations</span><input id="motionToggle" type="checkbox"></label><label class="setting-row"><span>Greeting name</span><input id="nameInput" type="text" maxlength="24" placeholder="Mawo"></label><button class="primary-btn wide" id="saveSettingsBtn">Save preferences</button><button class="text-btn danger-text" id="resetProgressBtn">Reset all saved data</button><p class="tiny-note">Resetting clears your saved garden, tasks, thoughts, moods, blessings, dhikr counts, reflections, and preferences from this browser.</p></section></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <footer class="site-footer">MIND GARDEN <span>✦</span> A LITTLE SPACE TO JUST BE</footer>
+  <script src="main.js"></script>
+</body>
+</html>
