@@ -11,6 +11,11 @@
 <body>
   <div class="stars" aria-hidden="true"></div>
 
+  <!-- BACKGROUND MUSIC ADDED HERE -->
+  <audio id="bgMusic" loop preload="none">
+    <source src="audio/rainy.mp3" type="audio/mpeg">
+  </audio>
+
   <header class="topbar">
     <button class="brand" id="brandHome" aria-label="Go to garden"><span>✿</span> MIND GARDEN</button>
     <div class="top-actions">
@@ -62,7 +67,7 @@
       <div class="quote-card"><span>✧</span><p>You don't have to do everything today.</p><small>Small moments count, too.</small></div>
     </section>
 
-    <!-- GLOW & BREATHE — preserved -->
+    <!-- GLOW & BREATHE -->
     <section class="page" id="breathePage">
       <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">TAKE A SOFT PAUSE</p><h1>Glow &amp; Breathe <span>✨</span></h1><p class="muted">Follow the light only if it feels comfortable.</p></div>
       <div class="breath-scene"><div class="breath-orb" id="breathOrb"><span id="breathWord">Ready?</span></div><p class="breath-instruction" id="breathInstruction">You can breathe naturally, too.</p><p class="breath-counter" id="breathCounter">A quiet moment, just for you.</p></div>
@@ -70,7 +75,7 @@
       <p class="gentle-tip">Keep breathing naturally if following a rhythm feels uncomfortable. You can stop whenever you like.</p>
     </section>
 
-    <!-- CLOUD THOUGHTS -->
+      <!-- CLOUD THOUGHTS -->
     <section class="page" id="cloudPage">
       <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">MAKE A LITTLE SPACE</p><h1>Cloud Thoughts <span>☁️</span></h1><p class="muted">You don't have to figure everything out right now.</p></div>
       <div class="cloud-sky" id="cloudSky"><span class="floating-cloud c1">☁</span><span class="floating-cloud c2">☁</span><span class="sky-message" id="skyMessage">Your thoughts are welcome here.</span></div>
@@ -87,7 +92,7 @@
       <div class="section-row"><h2>Your little list</h2><span class="soft-pill" id="taskCount">0 tasks</span></div><div id="taskList" class="task-list"></div><button class="secondary-btn wide" id="clearCompletedBtn">Clear completed steps</button><p class="gentle-tip">Rest is allowed. An unfinished task is not a failure.</p>
     </section>
 
-    <!-- MOOD TRACKER (upgraded existing Gentle Pause activity) -->
+    <!-- MOOD TRACKER -->
     <section class="page" id="goodbyePage">
       <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">NOTICE, DON'T JUDGE</p><h1>Mood Tracker <span>🌷</span></h1><p class="muted">Every feeling can have a place here. There is no “right” mood.</p></div>
       <form id="moodForm" class="input-card"><label>How are you feeling right now?</label><div class="mood-options" id="moodChoices">
@@ -100,7 +105,7 @@
       <div class="closing-note"><span>✦</span><p>You don't have to fix everything to deserve a moment of peace.</p><small>Take the next step whenever you're ready.</small></div>
     </section>
 
-    <!-- LITTLE BLESSINGS -->
+        <!-- LITTLE BLESSINGS -->
     <section class="page" id="blessingsPage">
       <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">NOTICE THE LITTLE GOOD</p><h1>Little Blessings <span>🤍</span></h1><p class="muted">A quiet place to remember people, ordinary moments, and things you're grateful for.</p></div>
       <form id="blessingForm" class="input-card"><label for="blessingInput">One little blessing from today</label><textarea id="blessingInput" maxlength="700" rows="4" placeholder="A kind message, family, a peaceful minute, something you learned…" required></textarea><button class="primary-btn wide" type="submit">Save this blessing ✨</button></form>
@@ -111,10 +116,11 @@
     <section class="page" id="quranPage">
       <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">LISTEN AT YOUR OWN PACE</p><h1>Quran Corner <span>📖</span></h1><p class="muted">Choose a recording and settle in for a little while.</p></div>
       <div class="audio-list">
-        <article class="audio-card"><div class="audio-art">🌙</div><div class="audio-copy"><h2>Surah Al-Mulk</h2><p>Audio file: <code>Al-mulk.mp3</code></p><audio controls preload="none" aria-label="Play Surah Al-Mulk"><source src="Al-mulk.mp3" type="audio/mpeg">Your browser does not support audio.</audio><p class="audio-status" aria-live="polite"></p></div></article>
-        <article class="audio-card"><div class="audio-art">🕊️</div><div class="audio-copy"><h2>Ruqyah</h2><p>Audio file: <code>Ruqyah.mp3</code></p><audio controls preload="none" aria-label="Play Ruqyah"><source src="Ruqyah.mp3" type="audio/mpeg">Your browser does not support audio.</audio><p class="audio-status" aria-live="polite"></p></div></article>
-        <article class="audio-card"><div class="audio-art">🌧️</div><div class="audio-copy"><h2>Taha Rain</h2><p>Audio file: <code>Taha-Rain.mp3</code></p><audio controls preload="none" aria-label="Play Taha Rain"><source src="Taha-Rain.mp3" type="audio/mpeg">Your browser does not support audio.</audio><p class="audio-status" aria-live="polite"></p></div></article>
-      </div><p class="gentle-tip">Add the three MP3 files beside index.html in your GitHub repository, using the exact filenames shown above. The players will work once the files are there.</p>
+        <!-- QURAN AUDIO FIXED TO LOOK IN audio/ FOLDER -->
+        <article class="audio-card"><div class="audio-art">🌙</div><div class="audio-copy"><h2>Surah Al-Mulk</h2><p>Audio file: <code>Al-mulk.mp3</code></p><audio controls preload="none" aria-label="Play Surah Al-Mulk"><source src="audio/Al-mulk.mp3" type="audio/mpeg">Your browser does not support audio.</audio><p class="audio-status" aria-live="polite"></p></div></article>
+        <article class="audio-card"><div class="audio-art">🕊️</div><div class="audio-copy"><h2>Ruqyah</h2><p>Audio file: <code>Ruqyah.mp3</code></p><audio controls preload="none" aria-label="Play Ruqyah"><source src="audio/Ruqyah.mp3" type="audio/mpeg">Your browser does not support audio.</audio><p class="audio-status" aria-live="polite"></p></div></article>
+        <article class="audio-card"><div class="audio-art">🌧️</div><div class="audio-copy"><h2>Taha Rain</h2><p>Audio file: <code>Taha-Rain.mp3</code></p><audio controls preload="none" aria-label="Play Taha Rain"><source src="audio/Taha-Rain.mp3" type="audio/mpeg">Your browser does not support audio.</audio><p class="audio-status" aria-live="polite"></p></div></article>
+      </div><p class="gentle-tip">Audio files are loaded from the <code>audio</code> folder in your GitHub repository.</p>
     </section>
 
     <!-- DHIKR CORNER -->
@@ -127,7 +133,7 @@
     <section class="page" id="duaPage">
       <button class="back-btn" data-back>← Garden</button><div class="page-heading"><p class="eyebrow">READ, PAUSE, REFLECT</p><h1>Dua &amp; Reflection <span>🕊️</span></h1><p class="muted">A few duas from the Qur’an, with references to read and verify.</p></div>
       <div class="input-card"><label for="duaSelect">Choose a dua</label><select id="duaSelect"><option value="world">Good in this life and the next · Qur’an 2:201</option><option value="heart">A prayer for a steady heart · Qur’an 3:8</option><option value="parents">Mercy for parents · Qur’an 17:24</option><option value="ease">Asking for ease · Qur’an 20:25–28</option></select><article class="dua-card-body"><p class="tiny-label" id="duaReference">QUR’AN 2:201</p><div class="arabic-text dua-arabic" id="duaArabic" lang="ar" dir="rtl"></div><p class="transliteration" id="duaTransliteration"></p><p id="duaTranslation" class="dua-translation"></p><p id="duaSourceNote" class="tiny-note"></p></article><label for="duaReflection">My private reflection (optional)</label><textarea id="duaReflection" rows="3" maxlength="500" placeholder="What stands out to you? A hope, a question, a thought…"></textarea><button class="primary-btn wide" id="saveDuaReflectionBtn" type="button">Save reflection</button></div>
-      <div class="section-row"><h2>Saved reflections</h2><span id="duaReflectionCount" class="soft-pill">0 saved</span></div><div id="duaReflectionList" class="reflection-list"></div><p class="gentle-tip">Translations are interpretations of meaning. For worship, study, or a ruling, consult a trusted Qur’an translation or knowledgeable teacher.</p>
+            <div class="section-row"><h2>Saved reflections</h2><span id="duaReflectionCount" class="soft-pill">0 saved</span></div><div id="duaReflectionList" class="reflection-list"></div><p class="gentle-tip">Translations are interpretations of meaning. For worship, study, or a ruling, consult a trusted Qur’an translation or knowledgeable teacher.</p>
     </section>
 
     <!-- TIME TO AYAH -->
@@ -146,3 +152,4 @@
   <script src="main.js"></script>
 </body>
 </html>
+```
