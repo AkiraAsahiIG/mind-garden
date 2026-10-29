@@ -95,8 +95,8 @@
   function saveState() {
     try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
     catch (error) { console.warn('Mind Garden could not save data:', error); showToast('Browser storage is unavailable. This change may not stay after you leave.'); }
-  }
-  function showToast(message) {
+       }
+    function showToast(message) {
     const toast = byId('toast'); if (!toast) return;
     toast.textContent = message; toast.classList.add('visible');
     if (toastTimer) window.clearTimeout(toastTimer);
@@ -143,7 +143,7 @@
     const toggle = byId('motionToggle'); if (toggle) toggle.checked = state.reducedMotion;
   }
 
-  // Glow & Breathe — original interaction retained.
+   // Glow & Breathe — original interaction retained.
   function stopBreathing(paused) {
     if (breathTimer !== null) { window.clearInterval(breathTimer); breathTimer = null; }
     breathPhase = 'stopped';
@@ -209,6 +209,7 @@
   });
   const clearThoughtsBtn=byId('clearThoughtsBtn'); if(clearThoughtsBtn)clearThoughtsBtn.addEventListener('click',()=>{if(!state.thoughts.length){showToast('There are no saved thoughts to clear. 🌿');return;}if(!window.confirm('Clear all saved thoughts from this browser?'))return;state.thoughts=[];saveState();renderThoughts();showToast('The sky is clear again. ☁️');});
 
+ 
   // Little Steps
   function renderTasks() {
     const list=byId('taskList'), count=byId('taskCount');if(!list)return;list.replaceChildren();const total=state.tasks.length,remaining=state.tasks.filter(t=>!t.completed).length;
@@ -223,12 +224,12 @@
   const taskForm=byId('taskForm'); if(taskForm)taskForm.addEventListener('submit',event=>{event.preventDefault();const input=byId('taskInput'),priority=byId('taskPriority'),text=input?input.value.trim():'';if(!text){showToast('Choose one small step to add. 🌱');if(input)input.focus();return;}state.tasks.push({id:makeId(),text:text.slice(0,120),priority:priority?priority.value:'gentle',completed:false,createdAt:Date.now()});saveState();input.value='';renderTasks();showToast('One small step is on your list. 🌷');playTone(587,.07);input.focus();});
   const clearCompletedBtn=byId('clearCompletedBtn'); if(clearCompletedBtn)clearCompletedBtn.addEventListener('click',()=>{const before=state.tasks.length;state.tasks=state.tasks.filter(t=>!t.completed);if(state.tasks.length===before){showToast('No completed steps to clear just yet. 🌿');return;}saveState();renderTasks();showToast('Completed steps cleared. You did what you could. ✨');});
 
-    // Mood tracker: check-ins, calendar, weekly summary, and an optional growing garden.
+  // Mood tracker: check-ins, calendar, weekly summary, and an optional growing garden.
   function renderMoodGarden() {
     const garden=byId('moodGarden'), count=byId('moodBloomCount');if(!garden)return;garden.replaceChildren();const total=state.moodChecks.length;if(count)count.textContent=`${total} ${total===1?'bloom':'blooms'}`;
     if(!total){garden.textContent='🌱';return;}const bloomEmojis=['🌷','🌼','🌸','🌿','✨','🌻','🍃'];const show=Math.min(total,60);for(let i=0;i<show;i++){const item=document.createElement('span');item.className='garden-bloom';item.textContent=bloomEmojis[i%bloomEmojis.length];item.setAttribute('aria-hidden','true');garden.append(item);}if(total>show){const more=document.createElement('span');more.className='tiny-note';more.textContent=`+ ${total-show} more`;garden.append(more);}
   }
-  function renderWeek() {
+     function renderWeek() {
     const wrap=byId('weekOverview'), count=byId('weekCheckCount');if(!wrap)return;wrap.replaceChildren();const today=new Date();today.setHours(0,0,0,0);const days=[];const tally={};let total=0;
     for(let i=6;i>=0;i--){const d=new Date(today);d.setDate(today.getDate()-i);const key=dateKey(d);const hits=state.moodChecks.filter(c=>keyFromTimestamp(c.createdAt)===key);total+=hits.length;hits.forEach(c=>tally[c.mood]=(tally[c.mood]||0)+1);days.push({d,hits});}
     if(count)count.textContent=`${total} ${total===1?'check-in':'check-ins'}`;
@@ -246,8 +247,8 @@
     const list=byId('moodHistory');if(!list)return;list.replaceChildren();const checks=[...state.moodChecks].sort((a,b)=>Number(b.createdAt)-Number(a.createdAt)).slice(0,30);
     if(!checks.length){const empty=document.createElement('div');empty.className='empty-note';empty.textContent='Your first check-in can begin whenever you are ready. 🌱';list.append(empty);return;}
     checks.forEach(check=>{const card=document.createElement('article');card.className='mood-history-card';const top=document.createElement('div');top.className='mood-history-top';const emoji=document.createElement('span');emoji.className='mood-history-emoji';emoji.textContent=moodDetails[check.mood]?.emoji||'🌿';const details=document.createElement('div');details.className='mood-history-details';const strong=document.createElement('strong');strong.textContent=check.mood;const time=document.createElement('small');time.textContent=formatDate(check.createdAt);details.append(strong,time);const remove=document.createElement('button');remove.type='button';remove.className='small-delete';remove.textContent='Delete';remove.addEventListener('click',()=>{state.moodChecks=state.moodChecks.filter(x=>x.id!==check.id);state.flowers=Math.max(0,state.flowers-1);state.mood=state.moodChecks[0]?.mood||'';saveState();renderMoodTracker();updateHeaderAndCounts();showToast('Check-in removed.');});top.append(emoji,details,remove);card.append(top);if(check.reflection){const p=document.createElement('p');p.textContent=check.reflection;card.append(p);}list.append(card);});
-  }
-  function renderMoodTracker(){renderMoodGarden();renderWeek();renderCalendar();renderMoodHistory();}
+       }
+     function renderMoodTracker(){renderMoodGarden();renderWeek();renderCalendar();renderMoodHistory();}
   document.querySelectorAll('[data-mood-choice]').forEach(btn=>btn.addEventListener('click',()=>{selectedMood=btn.getAttribute('data-mood-choice')||'';document.querySelectorAll('[data-mood-choice]').forEach(b=>b.classList.toggle('selected',b===btn));playTone(523,.06);}));
   const moodForm=byId('moodForm');if(moodForm)moodForm.addEventListener('submit',event=>{event.preventDefault();if(!selectedMood){showToast('Choose the feeling that fits best, or take another moment. 🌿');return;}const check={id:makeId(),mood:selectedMood,emoji:moodDetails[selectedMood]?.emoji||'🌿',reflection:(byId('moodReflection')?.value||'').trim().slice(0,350),createdAt:Date.now()};state.moodChecks.push(check);state.mood=selectedMood;state.flowers=Math.max(0,Number(state.flowers)||0)+1;saveState();selectedMood='';document.querySelectorAll('[data-mood-choice]').forEach(b=>b.classList.remove('selected'));if(byId('moodReflection'))byId('moodReflection').value='';renderMoodTracker();updateHeaderAndCounts();showToast('Check-in saved. One more little bloom in your garden. 🌷');playTone(784,.1);});
   const prevMonth=byId('prevMoodMonth'),nextMonth=byId('nextMoodMonth');if(prevMonth)prevMonth.addEventListener('click',()=>{calendarMonth=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()-1,1);renderCalendar();});if(nextMonth)nextMonth.addEventListener('click',()=>{calendarMonth=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()+1,1);renderCalendar();});
@@ -264,9 +265,9 @@
   function renderDua(){const key=byId('duaSelect')?.value||'world',dua=duas[key]||duas.world;if(byId('duaReference'))byId('duaReference').textContent=dua.ref;if(byId('duaArabic'))byId('duaArabic').textContent=dua.arabic;if(byId('duaTransliteration'))byId('duaTransliteration').textContent=dua.transliteration;if(byId('duaTranslation'))byId('duaTranslation').textContent=`“${dua.translation}”`;if(byId('duaSourceNote'))byId('duaSourceNote').textContent=dua.note;if(byId('duaReflection'))byId('duaReflection').value='';}
   const duaSelect=byId('duaSelect');if(duaSelect)duaSelect.addEventListener('change',renderDua);
   function renderDuaReflections(){const list=byId('duaReflectionList'),count=byId('duaReflectionCount');if(!list)return;list.replaceChildren();if(count)count.textContent=`${state.duaReflections.length} saved`;if(!state.duaReflections.length){const empty=document.createElement('div');empty.className='empty-note';empty.textContent='Any reflections you choose to save will appear here. 🌙';list.append(empty);return;}[...state.duaReflections].sort((a,b)=>Number(b.createdAt)-Number(a.createdAt)).forEach(entry=>{const card=document.createElement('article');card.className='reflection-card';const top=document.createElement('div');top.className='thought-card-top';const ref=document.createElement('small');ref.className='reflection-ref';ref.textContent=entry.ref;const date=document.createElement('small');date.textContent=formatDate(entry.createdAt);const remove=document.createElement('button');remove.type='button';remove.className='small-delete';remove.textContent='Delete';remove.addEventListener('click',()=>{state.duaReflections=state.duaReflections.filter(x=>x.id!==entry.id);saveState();renderDuaReflections();showToast('Reflection removed.');});const p=document.createElement('p');p.textContent=entry.text;top.append(ref,date,remove);card.append(top,p);list.append(card);});}
-   const saveDuaBtn=byId('saveDuaReflectionBtn');if(saveDuaBtn)saveDuaBtn.addEventListener('click',()=>{const text=(byId('duaReflection')?.value||'').trim();if(!text){showToast('Add a reflection first, or leave this private space empty.');return;}const key=duaSelect?.value||'world';state.duaReflections.unshift({id:makeId(),key,ref:duas[key].ref,text:text.slice(0,500),createdAt:Date.now()});saveState();if(byId('duaReflection'))byId('duaReflection').value='';renderDuaReflections();showToast('Reflection saved in this browser. 🌙');});
+  const saveDuaBtn=byId('saveDuaReflectionBtn');if(saveDuaBtn)saveDuaBtn.addEventListener('click',()=>{const text=(byId('duaReflection')?.value||'').trim();if(!text){showToast('Add a reflection first, or leave this private space empty.');return;}const key=duaSelect?.value||'world';state.duaReflections.unshift({id:makeId(),key,ref:duas[key].ref,text:text.slice(0,500),createdAt:Date.now()});saveState();if(byId('duaReflection'))byId('duaReflection').value='';renderDuaReflections();showToast('Reflection saved in this browser. 🌙');});
 
-  // Time to Ayah: maps every valid 24-hour minute to a valid global ayah number.
+   // Time to Ayah: maps every valid 24-hour minute to a valid global ayah number.
   // This is a deterministic browsing rule, not a claim that a clock time is religiously significant.
   function globalAyahForTime(value){const match=/^(\d{1,2}):(\d{2})$/.exec(value||'');if(!match)return null;const hour=Number(match[1]),minute=Number(match[2]);if(hour<0||hour>23||minute<0||minute>59)return null;const minutes=hour*60+minute;return Math.round((minutes/1439)*6235)+1;}
   function showAyahLoading(message){const result=byId('ayahResult');if(result){result.replaceChildren();const box=document.createElement('div');box.className='loading-note';box.textContent=message;result.append(box);}}
@@ -290,12 +291,44 @@
   function closeSettings(){const modal=byId('settingsModal');if(modal)modal.hidden=true;if(previousFocus&&typeof previousFocus.focus==='function')previousFocus.focus();}
   function saveSettings(){state.sound=Boolean(byId('soundToggle')?.checked);state.reducedMotion=Boolean(byId('motionToggle')?.checked);const name=(byId('nameInput')?.value||'').trim().slice(0,24);state.name=name||'Mawo';saveState();applyMotionSetting();updateHeaderAndCounts();closeSettings();showToast('Your little space has been updated. 💜');playTone(660,.08);}
   function resetProgress(){if(!window.confirm('Reset all Mind Garden progress, thoughts, tasks, moods, blessings, dhikr counts, reflections, and preferences on this browser?'))return;state=freshState();saveState();breathCycle=0;selectedMood='';stopBreathing(false);renderThoughts();renderTasks();renderMoodTracker();renderBlessings();renderDhikr();renderDuaReflections();if(thoughtInput)thoughtInput.value='';if(thoughtChars)thoughtChars.textContent='0 / 500';if(byId('blessingInput'))byId('blessingInput').value='';if(byId('moodReflection'))byId('moodReflection').value='';document.querySelectorAll('[data-mood-choice]').forEach(b=>b.classList.remove('selected'));applyMotionSetting();updateHeaderAndCounts();renderDua();closeSettings();showToast('A fresh little garden, just for you. 🌱');}
-  const soundBtn=byId('soundBtn');if(soundBtn)soundBtn.addEventListener('click',()=>{state.sound=!state.sound;saveState();updateSoundButton();if(state.sound)playTone(660,.08);showToast(state.sound?'Soft sounds are on. ♪':'Sound is off. Quiet is lovely, too. 🌙');});
-  const settingsBtn=byId('settingsBtn');if(settingsBtn)settingsBtn.addEventListener('click',openSettings);const closeSettingsBtn=byId('closeSettingsBtn');if(closeSettingsBtn)closeSettingsBtn.addEventListener('click',closeSettings);const saveSettingsBtn=byId('saveSettingsBtn');if(saveSettingsBtn)saveSettingsBtn.addEventListener('click',saveSettings);const resetBtn=byId('resetProgressBtn');if(resetBtn)resetBtn.addEventListener('click',resetProgress);
+  
+  // Top bar ♪ button now controls background music
+  const soundBtn=byId('soundBtn');
+  if(soundBtn){
+    soundBtn.addEventListener('click', () => {
+      const bgMusic = byId('bgMusic');
+      if (bgMusic) {
+        if (bgMusic.paused) {
+          bgMusic.play().catch(()=>{});
+          showToast('Background music on. 🌧️');
+        } else {
+          bgMusic.pause();
+          showToast('Background music paused. 🌙');
+        }
+      }
+    });
+  }
+
+      const settingsBtn=byId('settingsBtn');if(settingsBtn)settingsBtn.addEventListener('click',openSettings);const closeSettingsBtn=byId('closeSettingsBtn');if(closeSettingsBtn)closeSettingsBtn.addEventListener('click',closeSettings);const saveSettingsBtn=byId('saveSettingsBtn');if(saveSettingsBtn)saveSettingsBtn.addEventListener('click',saveSettings);const resetBtn=byId('resetProgressBtn');if(resetBtn)resetBtn.addEventListener('click',resetProgress);
   const modal=byId('settingsModal');if(modal)modal.addEventListener('click',event=>{if(event.target===modal)closeSettings();});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal&&!modal.hidden)closeSettings();});
   const breathStart=byId('breathStartBtn');if(breathStart)breathStart.addEventListener('click',startBreathing);const breathStop=byId('breathStopBtn');if(breathStop)breathStop.addEventListener('click',()=>{stopBreathing(true);showToast('Pause whenever you need. 🌙');});
 
   // Initial render. Old saved tasks/thoughts/preferences remain available.
   applyMotionSetting();updateHeaderAndCounts();renderThoughts();renderTasks();renderMoodTracker();renderBlessings();renderDhikr();renderDua();renderDuaReflections();stopBreathing(false);
   if(thoughtInput&&thoughtChars)thoughtChars.textContent=`${thoughtInput.value.length} / 500`;
+
+  // Background Music Start on first interaction
+  const bgMusic = byId('bgMusic');
+  if (bgMusic) {
+    bgMusic.volume = 0.4; // Comfortable volume
+    const startMusic = () => {
+      bgMusic.play().catch(() => {});
+      document.removeEventListener('pointerdown', startMusic);
+      document.removeEventListener('keydown', startMusic);
+    };
+    document.addEventListener('pointerdown', startMusic);
+    document.addEventListener('keydown', startMusic);
+  }
+
 })();
+```
