@@ -7,7 +7,7 @@
   'use strict';
    
   // Background music
-  const bgMusic = new Audio("./Audio/rainy.mp3");
+  const bgMusic = new audio("./audio/rainy.mp3");
   bgMusic.loop = true;
   bgMusic.volume = 0.25;
   bgMusic.preload = "auto";
