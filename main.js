@@ -5,49 +5,6 @@
 ========================================= */
 (function () {
   'use strict';
-   
-  // Background music
-  const bgMusic = new audio("./audio/rainy.mp3");
-  bgMusic.loop = true;
-  bgMusic.volume = 0.25;
-  bgMusic.preload = "auto";
-
-  // Music button
-  const musicBtn = document.createElement("button");
-  musicBtn.textContent = "🎵 Play Music";
-
-  Object.assign(musicBtn.style, {
-    position: "fixed",
-    bottom: "20px",
-    right: "20px",
-    zIndex: "9999",
-    padding: "12px",
-    borderRadius: "20px",
-    cursor: "pointer"
-  });
-
-  musicBtn.addEventListener("click", async () => {
-    if (bgMusic.paused) {
-      try {
-        await bgMusic.play();
-        musicBtn.textContent = "⏸ Pause Music";
-      } catch (error) {
-        console.error("Music failed to play:", error);
-        musicBtn.textContent = "❌ Music failed";
-      }
-    } else {
-      bgMusic.pause();
-      musicBtn.textContent = "🎵 Play Music";
-    }
-  });
-
-  document.body.appendChild(musicBtn);
-
-  // Keep your existing code below this line!
-  const STORAGE_KEY = 'mindGardenState_v1';
-
-  // ...rest of your existing main.js code...
-})();
 
   const STORAGE_KEY = 'mindGardenState_v1';
   const DEFAULT_STATE = {
@@ -266,7 +223,7 @@
   const taskForm=byId('taskForm'); if(taskForm)taskForm.addEventListener('submit',event=>{event.preventDefault();const input=byId('taskInput'),priority=byId('taskPriority'),text=input?input.value.trim():'';if(!text){showToast('Choose one small step to add. 🌱');if(input)input.focus();return;}state.tasks.push({id:makeId(),text:text.slice(0,120),priority:priority?priority.value:'gentle',completed:false,createdAt:Date.now()});saveState();input.value='';renderTasks();showToast('One small step is on your list. 🌷');playTone(587,.07);input.focus();});
   const clearCompletedBtn=byId('clearCompletedBtn'); if(clearCompletedBtn)clearCompletedBtn.addEventListener('click',()=>{const before=state.tasks.length;state.tasks=state.tasks.filter(t=>!t.completed);if(state.tasks.length===before){showToast('No completed steps to clear just yet. 🌿');return;}saveState();renderTasks();showToast('Completed steps cleared. You did what you could. ✨');});
 
-  // Mood tracker: check-ins, calendar, weekly summary, and an optional growing garden.
+    // Mood tracker: check-ins, calendar, weekly summary, and an optional growing garden.
   function renderMoodGarden() {
     const garden=byId('moodGarden'), count=byId('moodBloomCount');if(!garden)return;garden.replaceChildren();const total=state.moodChecks.length;if(count)count.textContent=`${total} ${total===1?'bloom':'blooms'}`;
     if(!total){garden.textContent='🌱';return;}const bloomEmojis=['🌷','🌼','🌸','🌿','✨','🌻','🍃'];const show=Math.min(total,60);for(let i=0;i<show;i++){const item=document.createElement('span');item.className='garden-bloom';item.textContent=bloomEmojis[i%bloomEmojis.length];item.setAttribute('aria-hidden','true');garden.append(item);}if(total>show){const more=document.createElement('span');more.className='tiny-note';more.textContent=`+ ${total-show} more`;garden.append(more);}
@@ -307,7 +264,7 @@
   function renderDua(){const key=byId('duaSelect')?.value||'world',dua=duas[key]||duas.world;if(byId('duaReference'))byId('duaReference').textContent=dua.ref;if(byId('duaArabic'))byId('duaArabic').textContent=dua.arabic;if(byId('duaTransliteration'))byId('duaTransliteration').textContent=dua.transliteration;if(byId('duaTranslation'))byId('duaTranslation').textContent=`“${dua.translation}”`;if(byId('duaSourceNote'))byId('duaSourceNote').textContent=dua.note;if(byId('duaReflection'))byId('duaReflection').value='';}
   const duaSelect=byId('duaSelect');if(duaSelect)duaSelect.addEventListener('change',renderDua);
   function renderDuaReflections(){const list=byId('duaReflectionList'),count=byId('duaReflectionCount');if(!list)return;list.replaceChildren();if(count)count.textContent=`${state.duaReflections.length} saved`;if(!state.duaReflections.length){const empty=document.createElement('div');empty.className='empty-note';empty.textContent='Any reflections you choose to save will appear here. 🌙';list.append(empty);return;}[...state.duaReflections].sort((a,b)=>Number(b.createdAt)-Number(a.createdAt)).forEach(entry=>{const card=document.createElement('article');card.className='reflection-card';const top=document.createElement('div');top.className='thought-card-top';const ref=document.createElement('small');ref.className='reflection-ref';ref.textContent=entry.ref;const date=document.createElement('small');date.textContent=formatDate(entry.createdAt);const remove=document.createElement('button');remove.type='button';remove.className='small-delete';remove.textContent='Delete';remove.addEventListener('click',()=>{state.duaReflections=state.duaReflections.filter(x=>x.id!==entry.id);saveState();renderDuaReflections();showToast('Reflection removed.');});const p=document.createElement('p');p.textContent=entry.text;top.append(ref,date,remove);card.append(top,p);list.append(card);});}
-  const saveDuaBtn=byId('saveDuaReflectionBtn');if(saveDuaBtn)saveDuaBtn.addEventListener('click',()=>{const text=(byId('duaReflection')?.value||'').trim();if(!text){showToast('Add a reflection first, or leave this private space empty.');return;}const key=duaSelect?.value||'world';state.duaReflections.unshift({id:makeId(),key,ref:duas[key].ref,text:text.slice(0,500),createdAt:Date.now()});saveState();if(byId('duaReflection'))byId('duaReflection').value='';renderDuaReflections();showToast('Reflection saved in this browser. 🌙');});
+   const saveDuaBtn=byId('saveDuaReflectionBtn');if(saveDuaBtn)saveDuaBtn.addEventListener('click',()=>{const text=(byId('duaReflection')?.value||'').trim();if(!text){showToast('Add a reflection first, or leave this private space empty.');return;}const key=duaSelect?.value||'world';state.duaReflections.unshift({id:makeId(),key,ref:duas[key].ref,text:text.slice(0,500),createdAt:Date.now()});saveState();if(byId('duaReflection'))byId('duaReflection').value='';renderDuaReflections();showToast('Reflection saved in this browser. 🌙');});
 
   // Time to Ayah: maps every valid 24-hour minute to a valid global ayah number.
   // This is a deterministic browsing rule, not a claim that a clock time is religiously significant.
