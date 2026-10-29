@@ -5,11 +5,51 @@
 ========================================= */
 (function () {
   'use strict';
-   
+(function () {
+  'use strict';
+
   // Background music
-  const bgMusic = new Audio("audio/rainy.mp3");
+  const bgMusic = new Audio("./Audio/rainy.mp3");
   bgMusic.loop = true;
   bgMusic.volume = 0.25;
+  bgMusic.preload = "auto";
+
+  // Music button
+  const musicBtn = document.createElement("button");
+  musicBtn.textContent = "🎵 Play Music";
+
+  Object.assign(musicBtn.style, {
+    position: "fixed",
+    bottom: "20px",
+    right: "20px",
+    zIndex: "9999",
+    padding: "12px",
+    borderRadius: "20px",
+    cursor: "pointer"
+  });
+
+  musicBtn.addEventListener("click", async () => {
+    if (bgMusic.paused) {
+      try {
+        await bgMusic.play();
+        musicBtn.textContent = "⏸ Pause Music";
+      } catch (error) {
+        console.error("Music failed to play:", error);
+        musicBtn.textContent = "❌ Music failed";
+      }
+    } else {
+      bgMusic.pause();
+      musicBtn.textContent = "🎵 Play Music";
+    }
+  });
+
+  document.body.appendChild(musicBtn);
+
+  // Keep your existing code below this line!
+  const STORAGE_KEY = 'mindGardenState_v1';
+
+  // ...rest of your existing main.js code...
+})();
 
   const STORAGE_KEY = 'mindGardenState_v1';
   const DEFAULT_STATE = {
